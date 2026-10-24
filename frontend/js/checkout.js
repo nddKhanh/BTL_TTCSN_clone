@@ -158,7 +158,7 @@ function setupCheckoutForm() {
 
       CartManager.clearCart();
       alert('Đặt hàng thành công!');
-      window.location.href = `order-status.html?code=${order.orderCode}`;
+      window.location.href = `order-status.html?code=${encodeURIComponent(order.orderCode)}&phone=${encodeURIComponent(payload.customerPhone)}`;
     } catch (err) {
       console.error(err);
       alert(`Đặt hàng thất bại: ${err.message}`);
