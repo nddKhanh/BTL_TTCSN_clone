@@ -106,7 +106,7 @@ async function loadProducts() {
     });
     container.innerHTML = html;
   } catch (err) {
-    container.innerHTML = '<p style="color:red">Lỗi tải danh sách sản phẩm. Hãy chắc chắn Backend đang chạy!</p>';
+    container.innerHTML = '<p style="color:red">Lỗi tải danh sách sản phẩm. <button type="button" onclick="loadProducts()">Thử lại</button></p>';
   }
 }
 
