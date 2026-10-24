@@ -3,6 +3,7 @@ let modalQuantity = 1;
 let allToppings = [];
 let selectedCategoryId = null;
 let searchTimer = null;
+let lastFocusedElement = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
   const params = new URLSearchParams(window.location.search);
@@ -160,15 +161,26 @@ async function openProductModal(productId) {
     if (noteInput) noteInput.value = '';
 
     updateModalPrice();
-    document.getElementById('productModal').classList.add('active');
+    lastFocusedElement = document.activeElement;
+    const modal = document.getElementById('productModal');
+    modal.hidden = false;
+    modal.classList.add('active');
+    modal.querySelector('.modal-close')?.focus();
   } catch (err) {
     alert('Không thể tải chi tiết sản phẩm!');
   }
 }
 
 function closeModal() {
-  document.getElementById('productModal').classList.remove('active');
+  const modal = document.getElementById('productModal');
+  modal.classList.remove('active');
+  modal.hidden = true;
+  lastFocusedElement?.focus();
 }
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && document.getElementById('productModal')?.classList.contains('active')) closeModal();
+});
 
 function changeQty(delta) {
   modalQuantity += delta;
