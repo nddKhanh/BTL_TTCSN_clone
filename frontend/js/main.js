@@ -271,14 +271,29 @@ function renderCartDrawer() {
       <div class="cart-item">
         <div>
           <div class="cart-item-name">${item.productName}</div>
-          <div class="cart-item-sub">SL: ${item.quantity} | ${opts}</div>
+          <div class="cart-item-sub">SL: <input class="cart-quantity" type="number" min="1" value="${item.quantity}" onchange="updateCartItemQuantity(${index}, this.value)" aria-label="Số lượng ${item.productName}"> | ${opts}</div>
           <div class="cart-item-price">${formatVND(item.subtotal)}</div>
         </div>
-        <button style="color:red; border:none; background:none; cursor:pointer; font-weight:bold;" onclick="CartManager.removeItem(${index}); renderCartDrawer();">Xóa</button>
+        <button style="color:red; border:none; background:none; cursor:pointer; font-weight:bold;" onclick="removeFromCart(${index});">Xóa</button>
       </div>
     `;
   });
 
   container.innerHTML = html;
   document.getElementById('cartTotalAmount').textContent = formatVND(CartManager.getTotal());
+  const progress = CartManager.getShippingProgress();
+  const shippingMessage = document.getElementById('shippingProgress');
+  if (shippingMessage) shippingMessage.textContent = progress.free
+    ? 'Bạn được miễn phí giao hàng.'
+    : `Mua thêm ${formatVND(progress.remaining)} để được miễn phí giao hàng.`;
+}
+
+function updateCartItemQuantity(index, quantity) {
+  CartManager.updateItem(index, quantity);
+  renderCartDrawer();
+}
+
+function removeFromCart(index) {
+  CartManager.removeItem(index);
+  renderCartDrawer();
 }
