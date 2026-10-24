@@ -5,6 +5,10 @@ let selectedCategoryId = null;
 let searchTimer = null;
 
 document.addEventListener('DOMContentLoaded', async () => {
+  const params = new URLSearchParams(window.location.search);
+  selectedCategoryId = params.get('categoryId') ? Number(params.get('categoryId')) : null;
+  const initialSearch = document.getElementById('productSearch');
+  if (initialSearch) initialSearch.value = params.get('keyword') || '';
   await loadCategories();
   await loadToppings();
   await loadProducts();
@@ -73,6 +77,9 @@ async function loadProducts() {
     const query = new URLSearchParams();
     if (selectedCategoryId) query.set('categoryId', selectedCategoryId);
     if (keyword) query.set('keyword', keyword);
+    const url = new URL(window.location.href);
+    url.search = query.toString();
+    window.history.replaceState({}, '', url);
     const endpoint = `/products${query.size ? `?${query}` : ''}`;
     const products = await fetchAPI(endpoint);
 
