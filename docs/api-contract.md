@@ -84,3 +84,13 @@ Token thiếu, sai hoặc hết hạn trả `401 Unauthorized` với `AUTHENTICA
 ## OpenAPI
 
 Swagger UI: `/swagger-ui.html`; tài liệu máy đọc: `/v3/api-docs`. Các endpoint auth dùng `Authorization: Bearer <access-token>`.
+
+Ví dụ response lỗi coupon:
+
+```json
+{
+  "success": false,
+  "errorCode": "COUPON_INVALID",
+  "message": "Mã đã hết hạn"
+}
+```
