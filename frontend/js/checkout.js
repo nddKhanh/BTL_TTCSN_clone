@@ -127,6 +127,17 @@ function setupCheckoutForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
+    const phone = document.getElementById('customerPhone').value.trim();
+    const address = document.getElementById('deliveryAddress').value.trim();
+    if (!/^(\+84|0)(3|5|7|8|9)\d{8}$/.test(phone)) {
+      alert('Vui lòng nhập số điện thoại Việt Nam hợp lệ.');
+      return;
+    }
+    if (address.length < 10) {
+      alert('Địa chỉ giao hàng cần ít nhất 10 ký tự.');
+      return;
+    }
+
     const cart = CartManager.getCart();
     if (cart.length === 0) {
       alert('Giỏ hàng trống!');
@@ -135,7 +146,7 @@ function setupCheckoutForm() {
 
     const payload = {
       customerName: document.getElementById('customerName').value.trim(),
-      customerPhone: document.getElementById('customerPhone').value.trim(),
+      customerPhone: phone,
       deliveryAddress: document.getElementById('deliveryAddress').value.trim(),
       note: document.getElementById('note').value.trim(),
       couponCode: appliedCoupon ? appliedCoupon.code : null,
