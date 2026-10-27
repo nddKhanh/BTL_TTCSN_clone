@@ -61,8 +61,8 @@ public class DataSeeder implements CommandLineRunner {
         // 1. Tạo 6 Danh Mục Sản Phẩm
         Category coffee = categoryRepository.save(Category.builder().code("COFFEE").name("Cà Phê Mộc Nhiên").imageUrl("https://placehold.co/480x320?text=Ca+Phe").build());
         Category tea = categoryRepository.save(Category.builder().code("TEA").name("Trà Trái Cây & Trà Sữa").imageUrl("https://placehold.co/480x320?text=Tra").build());
-        Category freeze = categoryRepository.save(Category.builder().code("FREEZE").name("Đá Xay Special").imageUrl("https://thumb.wikimedia.org/wikipedia/commons/thumb/0/09/Fresh-mango-smoothie_01.jpg/960px-Fresh-mango-smoothie_01.jpg").build());
-        Category juice = categoryRepository.save(Category.builder().code("JUICE").name("Nước Ép & Sinh Tố").imageUrl("https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f4/Batido_de_papaya.jpg/960px-Batido_de_papaya.jpg").build());
+        Category freeze = categoryRepository.save(Category.builder().code("FREEZE").name("Đá Xay Special").imageUrl("https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Doctor_Oz_Berries_and_Greens_Smoothie_-_Dr._Oz_Blueberry_Smoothie.webm/960px--Doctor_Oz_Berries_and_Greens_Smoothie_-_Dr._Oz_Blueberry_Smoothie.webm.jpg").build());
+        Category juice = categoryRepository.save(Category.builder().code("JUICE").name("Nước Ép & Sinh Tố").imageUrl("https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a7/Green_Juice_Smoothie_Detox_Recipe._A_Gwyneth_Paltrow_blender_recipe..webm/960px--Green_Juice_Smoothie_Detox_Recipe._A_Gwyneth_Paltrow_blender_recipe..webm.jpg").build());
         Category cake = categoryRepository.save(Category.builder().code("CAKE").name("Bánh & Snack").imageUrl("https://placehold.co/480x320?text=Banh").build());
         Category combo = categoryRepository.save(Category.builder().code("COMBO").name("Combo Tiết Kiệm").imageUrl("https://placehold.co/480x320?text=Combo").build());
 
