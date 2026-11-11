@@ -34,6 +34,10 @@ Frontend Node test suite đã chạy thành công với 17 test.
 
 Backend compile và Docker image build đã chạy thành công.
 
+Stack TTCSN cô lập `ttcsn-mvp-check` đã build và khởi động thành công trên các cổng `13306`, `18080` và `13000`.
+MySQL, backend và frontend đều healthy, Flyway áp dụng đủ 10 migration tới v10, và frontend trả HTTP 200.
+Stack cùng volume tạm đã được dọn sau kiểm tra.
+
 Một database TTCSN sạch và một stack DX-OS cô lập đã được dùng để chạy API E2E.
 
 Luồng E2E đã xác nhận:
@@ -52,7 +56,7 @@ PoF về thay đổi model V1, V2 và V3 được ghi riêng tại [Kết quả 
 
 | Vấn đề | Trạng thái hiện tại | Việc cần kiểm tra hoặc bổ sung |
 | --- | --- | --- |
-| Kiểm tra giao diện trực quan | Chưa hoàn thành; mới có API E2E và test JavaScript | Đăng nhập customer và admin trên trình duyệt; xác nhận nút `Tiếp nhận`, `Duyệt`, `Từ chối`, yêu cầu lý do và trạng thái sau refresh |
+| Kiểm tra giao diện trực quan | Chưa hoàn thành; test JavaScript đạt nhưng browser automation host Windows không cho truy cập URL local trong phiên này | Đăng nhập customer và admin trên trình duyệt; xác nhận nút `Tiếp nhận`, `Duyệt`, `Từ chối`, yêu cầu lý do và trạng thái sau refresh |
 | Bootstrap OIDC | Đã cấu hình thủ công trên stack thử nghiệm, chưa được tự động hóa trong source TTCSN | Tạo public client `ttcsn-mvp`, bật direct access grant, tắt standard flow và thêm audience mapper cho `dxos-api` |
 | Tài khoản và role DX-OS | Dùng hai tài khoản demo được cấp `REQUESTER` và `APPROVER` thủ công | Tạo hoặc ánh xạ account trong môi trường đích và truyền credential qua secret/environment |
 | Exactly-once cho action | Chưa thể bảo đảm | DX-OS action API chưa nhận idempotency key; ledger TTCSN chỉ giảm replay trùng |
