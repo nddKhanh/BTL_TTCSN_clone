@@ -46,6 +46,6 @@ PoF V1 → V2 → V3 đã chạy qua API công khai trên một stack DX-OS cô 
 Kết quả xác nhận schema và topology thay đổi theo model mà không sửa mã ứng dụng thử nghiệm.
 DX-OS đã chặn thay topology khi còn record mở và giữ version, hash, record cùng event sau restart.
 
-TTCSN chưa chuyển `APPROVAL_PROVIDER` sang DX-OS.
-Action API hiện tại của DX-OS chưa nhận idempotency key hoặc expected version, nên chưa thể bảo toàn đầy đủ contract retry và concurrency của `ApprovalPort`.
+TTCSN đã chuyển `APPROVAL_PROVIDER` sang DX-OS trong cấu hình demo của MVP và giữ `local` làm fallback.
+Action API hiện tại của DX-OS chưa nhận idempotency key hoặc expected version, nên adapter chỉ bảo toàn contract retry và concurrency theo hướng best-effort.
 Chi tiết request, kết quả và ranh giới trách nhiệm được ghi tại [kết quả PoF](RESULTS.md).
