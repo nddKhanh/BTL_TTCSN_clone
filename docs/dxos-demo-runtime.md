@@ -31,6 +31,16 @@ Sau mỗi lần kiểm tra, chỉ chuyển một mục sang **Đã xác minh** k
 Nếu kết quả phụ thuộc commit hoặc dữ liệu mới, thêm một mốc ngày mới thay vì sửa mất bằng chứng cũ.
 Không ghi mật khẩu, token, client secret hoặc JWT secret vào tài liệu này.
 
+## Trạng thái phiên khởi chạy 2026-11-11
+
+- Docker Engine `29.6.1` hoạt động bình thường.
+- Compose TTCSN được chạy trong project cô lập `ttcsn-mvp-check` với host ports `13306` (MySQL), `18080` (backend) và `13000` (frontend).
+- Backend và frontend image build thành công; MySQL, backend và frontend đều đạt trạng thái healthy.
+- Flyway áp dụng thành công 10 migration trên database mới, tới version v10.
+- Frontend trả HTTP 200 ở `http://localhost:13000/`.
+- Endpoint `/actuator/health` vẫn yêu cầu xác thực và không được dùng làm HTTP smoke unauthenticated; trạng thái backend được xác nhận qua Docker healthcheck.
+- Stack tạm và volume `ttcsn-mvp-check_mysql_data` đã được dọn sau kiểm tra.
+
 ## Trạng thái phiên khởi chạy 2026-11-10
 
 - DX-OS PoF được build từ worktree cô lập và khởi động thành công với project `ttcsn-dxos-pof`; gateway `http://localhost:19080` trả HTTP 200. Các container backend, Keycloak, frontend, portal, monitor, APISIX, PostgreSQL và SeaweedFS đều báo healthy trong lần `docker compose up --wait`.
